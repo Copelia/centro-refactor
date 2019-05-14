@@ -1,0 +1,260 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../iron-selector/iron-selector.html">
+<link rel="import" href="../iron-swipeable-container.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../iron-icons/image-icons.html">
+
+<dom-module id="centro-refactor">
+  <template>
+    <style>
+    .clsTitle {
+      background-color:black;
+      color:white;
+      opacity:.5;
+    }
+
+    .clsLista {
+      list-style:none;
+    }
+
+    .clsListaItem {
+      display:inline-block;
+      padding-left: 20px;
+      width:100px;
+    }
+
+    .clsListaItem2 {
+      display:inline-block;
+      padding-left: 5px;
+      width:50px;
+    }
+
+    .dContent {
+      width: 100%;
+    }
+
+    .dItem {
+      display: inline-block;
+    }
+
+    .polymer-checkbox{
+      vertical-align: super;
+      display: inline-block;
+    }
+
+    .infoItem {
+      clear:both;
+    }
+
+
+    .clsTagContent {
+      margin:0 auto;
+      border-radius:5px;
+      overflow:hidden;
+    }
+
+    </style>
+
+    <iron-swipeable-container>
+        <div class="clsTitle">
+          <h3>1. Tratamiento</h3>
+        </div>
+        <ul class="clsLista">
+          <li class="clsListaItem">
+            <div class="dContent">
+              <div class="dItem">
+                <iron-icon icon="image:brightness-2"></iron-icon>
+                <br/>
+                <iron-icon icon="image:brightness-5"></iron-icon>
+              </div>  
+              <div class="polymer-checkbox">
+                <paper-checkbox></paper-checkbox>
+              </div>
+              <br/>
+              <span class="infoItem">Essential Shock Intense</span>
+            </div>
+          </li>
+          <li class="clsListaItem">
+              <div class="dContent">
+            <div class="dItem">
+              <iron-icon icon="image:brightness-2"></iron-icon>
+              <br/>
+              <iron-icon icon="image:brightness-5"></iron-icon>
+            </div>
+            <div class="polymer-checkbox">
+              <paper-checkbox></paper-checkbox>
+            </div>
+            <br/>
+            <span class="infoItem">Essential Shock Intense</span>
+          </div>
+          </li>
+          <li class="clsListaItem">
+              <div class="dContent">
+            <div class="dItem">
+              <iron-icon icon="image:brightness-2"></iron-icon>
+              <br/>
+              <iron-icon icon="image:brightness-5"></iron-icon>
+            </div>
+            <div class="polymer-checkbox">
+              <paper-checkbox></paper-checkbox>
+            </div>
+            <br/>
+            <span class="infoItem">Essential Shock Intense</span>
+          </div>
+          </li>
+          <li class="clsListaItem">
+                <div class="dContent">
+              <div class="dItem">
+                <iron-icon icon="image:brightness-2"></iron-icon>
+                <br/>
+                <iron-icon icon="image:brightness-5"></iron-icon>
+              </div>
+              <div class="polymer-checkbox">
+                <paper-checkbox></paper-checkbox>
+              </div>
+              <br/>
+              <span class="infoItem">Essential Shock Intense</span>
+            </div>
+          </li>
+          <li class="clsListaItem">
+                  <div class="dContent">
+                <div class="dItem">
+                  <iron-icon icon="image:brightness-2"></iron-icon>
+                  <br/>
+                  <iron-icon icon="image:brightness-5"></iron-icon>
+                </div>
+                <div class="polymer-checkbox">
+                  <paper-checkbox></paper-checkbox>
+                </div>
+                <br/>
+                <span class="infoItem">Essential Shock Intense</span>
+              </div>
+          </li>
+        </ul>
+
+        <div>
+          <ul class="clsLista">
+            <li class="clsListaItem2">
+                <label>Lu/Mo</label>
+                <paper-checkbox></paper-checkbox>
+            </li>
+            <li class="clsListaItem2">
+                <label>Ma/Tu</label>
+                <paper-checkbox></paper-checkbox>
+            </li>
+            <li class="clsListaItem2">
+                <label>Mi/We</label>
+                <paper-checkbox></paper-checkbox>
+            </li>
+            <li class="clsListaItem2">
+                <label>Ju/Th</label>
+                <paper-checkbox></paper-checkbox>
+            </li>
+            <li class="clsListaItem2">
+                <label>Vi/Fr</label>
+                <paper-checkbox></paper-checkbox>
+            </li>
+            <li class="clsListaItem2">
+                <label>Sa/Sa</label>
+                <paper-checkbox></paper-checkbox>
+            </li>
+            <li class="clsListaItem2">
+                <label>Do/Su</label>
+                <paper-checkbox></paper-checkbox>
+            </li>      
+          </ul>
+        </div>
+    </iron-swipeable-container>  
+
+    <table>
+      <thead>
+        <template is="dom-repeat" items="{{columnList}}" as="column">
+          <tr>
+            <h3>{{column.colName}}</h3>
+          </tr>
+        </template>
+      </thead>
+
+
+      <tbody>
+        <tr>             
+          <template is="dom-repeat" items="{{productsList}}" as="product">     
+            <td>
+            <iron-selector selected-attribute="checked" attr-for-selected="name">
+              <!-- <td> <paper-checkbox name={{product.name}}></paper-checkbox></td> -->
+              <div class="clsListaItem">
+                <div class="dContent">
+                  <div class="dItem">
+                    <iron-icon icon="image:brightness-2"></iron-icon>
+                    <br/>
+                    <iron-icon icon="image:brightness-5"></iron-icon>
+                  </div>  
+                  <div class="polymer-checkbox">
+                    <paper-checkbox></paper-checkbox>
+                  </div>
+                  <br/>
+                  <span class="infoItem">{{product.name}}</span>
+                </div>
+                <!-- <template is="dom-if" if="{{product.week}}">
+                  <template is="dom-repeat" items="{{weekList}}" as="week">
+                    <td>{{week.day}}<paper-checkbox class="checkbox-week" name={{week.day}}></paper-checkbox></td>      
+                  </template>
+                </template>    -->
+              </div>  
+            </iron-selector>     
+            </td>
+          </template>
+        </tr>
+      </tbody>
+
+    </table>
+
+</template>
+
+  <script>
+    /**
+     * `centro-refactor`
+     * iteración 1 con diseño homologado
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class CentroRefactor extends Polymer.Element {
+      static get is() { return 'centro-refactor'; }
+      static get properties() {
+        return {
+          columnList: {
+            type: Array,
+            value: function() {
+              return[
+              {colName: ''}
+              ]
+            }
+          },
+          productsList: {
+            type: Array,
+            value: function() {
+              return[
+              {name: '', week: true}
+              ]
+            }
+          },
+          weekList:{
+            type: Array,
+            value: function(){
+              return[
+                {day: ''},
+              ]
+            }
+          }
+        }
+      };
+    }
+    
+
+    window.customElements.define(CentroRefactor.is, CentroRefactor);
+  </script>
+</dom-module>
