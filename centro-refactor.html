@@ -199,18 +199,24 @@
                   <br/>
                   <span class="infoItem">{{product.name}}</span>
                 </div>
-                <!-- <template is="dom-if" if="{{product.week}}">
-                  <template is="dom-repeat" items="{{weekList}}" as="week">
-                    <td>{{week.day}}<paper-checkbox class="checkbox-week" name={{week.day}}></paper-checkbox></td>      
-                  </template>
-                </template>    -->
-              </div>  
+              </div>    
             </iron-selector>     
             </td>
           </template>
         </tr>
+        <template is="dom-repeat" items="{{columnList}}" as="column">     
+          <tr>
+            <td>
+              <template is="dom-if" if="{{column.week}}">
+                <template is="dom-repeat" items="{{weekList}}" as="week">
+                  <td>{{week.day}}<paper-checkbox class="checkbox-week" name={{week.day}}></paper-checkbox></td>      
+                </template>
+              </template> 
+            </td>
+          </tr>
+        </template>
+        
       </tbody>
-
     </table>
 
 </template>
@@ -232,7 +238,7 @@
             type: Array,
             value: function() {
               return[
-              {colName: ''}
+              {colName: '', week: true}
               ]
             }
           },
@@ -240,7 +246,7 @@
             type: Array,
             value: function() {
               return[
-              {name: '', week: true}
+              {name: '', category: ''}
               ]
             }
           },
