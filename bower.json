@@ -5,7 +5,10 @@
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",
     "iron-icons": "@polymer/iron-icons#2.0-preview",
-    "iron-swipeable-container": "@polymer/iron-swipeable-container#2.x"
+    "iron-swipeable-container": "@polymer/iron-swipeable-container#2.x",
+    "combo-box": "https://github.com/Copelia/combo-box.git#master",
+    "v0.0": "https://github.com/Copelia/combo-box/tree/v0.0.1",
+    "week-box": "https://github.com/Copelia/week-box.git#master"
   },
   "devDependencies": {
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
