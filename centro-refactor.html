@@ -5,6 +5,9 @@
 <link rel="import" href="../iron-swipeable-container.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../iron-icons/image-icons.html">
+<link rel="import" href="../combo-box/combo-box.html">
+<link rel="import" href="../week-box/week-box.html">
+
 
 <dom-module id="centro-refactor">
   <template>
@@ -25,12 +28,6 @@
       width:100px;
     }
 
-    .clsListaItem2 {
-      display:inline-block;
-      padding-left: 5px;
-      width:50px;
-    }
-
     .dContent {
       width: 100%;
     }
@@ -44,176 +41,55 @@
       display: inline-block;
     }
 
-    .infoItem {
-      clear:both;
-    }
-
-
-    .clsTagContent {
-      margin:0 auto;
-      border-radius:5px;
-      overflow:hidden;
+    combo-box{
+      padding-left: 0 !important;
     }
 
     </style>
 
-    <iron-swipeable-container>
-        <div class="clsTitle">
-          <h3>1. Tratamiento</h3>
-        </div>
-        <ul class="clsLista">
-          <li class="clsListaItem">
-            <div class="dContent">
-              <div class="dItem">
-                <iron-icon icon="image:brightness-2"></iron-icon>
-                <br/>
-                <iron-icon icon="image:brightness-5"></iron-icon>
-              </div>  
-              <div class="polymer-checkbox">
-                <paper-checkbox></paper-checkbox>
-              </div>
-              <br/>
-              <span class="infoItem">Essential Shock Intense</span>
-            </div>
-          </li>
-          <li class="clsListaItem">
-              <div class="dContent">
-            <div class="dItem">
-              <iron-icon icon="image:brightness-2"></iron-icon>
-              <br/>
-              <iron-icon icon="image:brightness-5"></iron-icon>
-            </div>
-            <div class="polymer-checkbox">
-              <paper-checkbox></paper-checkbox>
-            </div>
+      <template is="dom-repeat" items="{{listProducts}}" as="item">     
+         <div class="clsTitle">
+          <h3>{{item.title}}</h3>
+         </div>
+         <!-- DOM IF (Lista vacia)-->
+         <ul class="clsLista">
+          <template is="dom-repeat" items="{{item.creams}}" as="cream">
+            <li class="clsListaItem">
+            <combo-box></combo-box>
             <br/>
-            <span class="infoItem">Essential Shock Intense</span>
-          </div>
-          </li>
-          <li class="clsListaItem">
-              <div class="dContent">
-            <div class="dItem">
-              <iron-icon icon="image:brightness-2"></iron-icon>
-              <br/>
-              <iron-icon icon="image:brightness-5"></iron-icon>
-            </div>
-            <div class="polymer-checkbox">
-              <paper-checkbox></paper-checkbox>
-            </div>
-            <br/>
-            <span class="infoItem">Essential Shock Intense</span>
-          </div>
-          </li>
-          <li class="clsListaItem">
-                <div class="dContent">
-              <div class="dItem">
-                <iron-icon icon="image:brightness-2"></iron-icon>
-                <br/>
-                <iron-icon icon="image:brightness-5"></iron-icon>
-              </div>
-              <div class="polymer-checkbox">
-                <paper-checkbox></paper-checkbox>
-              </div>
-              <br/>
-              <span class="infoItem">Essential Shock Intense</span>
-            </div>
-          </li>
-          <li class="clsListaItem">
-                  <div class="dContent">
-                <div class="dItem">
-                  <iron-icon icon="image:brightness-2"></iron-icon>
-                  <br/>
-                  <iron-icon icon="image:brightness-5"></iron-icon>
-                </div>
-                <div class="polymer-checkbox">
-                  <paper-checkbox></paper-checkbox>
-                </div>
-                <br/>
-                <span class="infoItem">Essential Shock Intense</span>
-              </div>
-          </li>
+            <span class="infoItem">{{cream.nombre}}</span> 
+            </li>
+          </template>  
         </ul>
-
-        <div>
-          <ul class="clsLista">
-            <li class="clsListaItem2">
-                <label>Lu/Mo</label>
-                <paper-checkbox></paper-checkbox>
-            </li>
-            <li class="clsListaItem2">
-                <label>Ma/Tu</label>
-                <paper-checkbox></paper-checkbox>
-            </li>
-            <li class="clsListaItem2">
-                <label>Mi/We</label>
-                <paper-checkbox></paper-checkbox>
-            </li>
-            <li class="clsListaItem2">
-                <label>Ju/Th</label>
-                <paper-checkbox></paper-checkbox>
-            </li>
-            <li class="clsListaItem2">
-                <label>Vi/Fr</label>
-                <paper-checkbox></paper-checkbox>
-            </li>
-            <li class="clsListaItem2">
-                <label>Sa/Sa</label>
-                <paper-checkbox></paper-checkbox>
-            </li>
-            <li class="clsListaItem2">
-                <label>Do/Su</label>
-                <paper-checkbox></paper-checkbox>
-            </li>      
-          </ul>
-        </div>
-    </iron-swipeable-container>  
-
-    <table>
-      <thead>
-        <template is="dom-repeat" items="{{columnList}}" as="column">
-          <tr>
-            <h3>{{column.colName}}</h3>
-          </tr>
+        <template is="dom-if" if="{{item.week}}">
+            <week-box></week-box>
         </template>
-      </thead>
+         
+        <!--  DOM IF (Algo en la lista) -->
+        <template is="dom-repeat" items="{{item.listSubtitle}}" as="subtitle">
+          <h4>{{subtitle.title}}</h4>
 
-
-      <tbody>
-        <tr>             
-          <template is="dom-repeat" items="{{productsList}}" as="product">     
-            <td>
-            <iron-selector selected-attribute="checked" attr-for-selected="name">
-              <!-- <td> <paper-checkbox name={{product.name}}></paper-checkbox></td> -->
-              <div class="clsListaItem">
-                <div class="dContent">
-                  <div class="dItem">
-                    <iron-icon icon="image:brightness-2"></iron-icon>
-                    <br/>
-                    <iron-icon icon="image:brightness-5"></iron-icon>
-                  </div>  
-                  <div class="polymer-checkbox">
-                    <paper-checkbox></paper-checkbox>
-                  </div>
+        <ul class="clsLista">
+              <template is="dom-repeat" items="{{subtitle.creams}}" as="cream">
+                <li class="clsListaItem">
+                  <combo-box></combo-box>
                   <br/>
-                  <span class="infoItem">{{product.name}}</span>
-                </div>
-                <!-- <template is="dom-if" if="{{product.week}}">
-                  <template is="dom-repeat" items="{{weekList}}" as="week">
-                    <td>{{week.day}}<paper-checkbox class="checkbox-week" name={{week.day}}></paper-checkbox></td>      
-                  </template>
-                </template>    -->
-              </div>  
-            </iron-selector>     
-            </td>
+                  <span class="infoItem">{{cream.nombre}}</span> 
+                </li>
+              </template>
+          <template is="dom-if" if="{{subtitle.week}}">
+                    <week-box></week-box>
           </template>
-        </tr>
-      </tbody>
+        </ul>
+       
+        <div>
 
-    </table>
+        </template>
+      </template>
 
-</template>
+    </template>  
 
-  <script>
+<script>
     /**
      * `centro-refactor`
      * iteración 1 con diseño homologado
@@ -226,27 +102,47 @@
       static get is() { return 'centro-refactor'; }
       static get properties() {
         return {
-          columnList: {
+          listProducts: {
             type: Array,
             value: function() {
-              return[
-              {colName: ''}
-              ]
-            }
-          },
-          productsList: {
-            type: Array,
-            value: function() {
-              return[
-              {name: '', week: true}
-              ]
-            }
-          },
-          weekList:{
-            type: Array,
-            value: function(){
-              return[
-                {day: ''},
+              return [
+                {title : "1. Tratamiento",
+                 week : true,
+                 creams : [
+                  {nombre : "noche"},
+                  {nombre : "dia"}
+                  ]
+                },
+                {title : "1.1 Tratamienta",
+                 week : false,
+                 creams : [
+                  {nombre : "noche"},
+                  {nombre : "dia"}
+                  ]
+                },
+                { title : "2. Mascarillas",
+                  week : false,
+                  listSubtitle : [
+                    {title : "Durazno",
+                     week : true,
+                     creams : [
+                      {nombre : "noches sub"},
+                      {nombre : "dias sub"}
+                     ]
+                    }
+                  ]
+                },
+                { title : "2.0 Mascarillita",
+                  listSubtitle : [
+                    {title : "Naranja",
+                     week : false,
+                     creams : [
+                      {nombre : "noche sub"},
+                      {nombre : "dia sub"}
+                     ]
+                    }
+                  ]
+                }
               ]
             }
           }
